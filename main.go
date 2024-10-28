@@ -24,8 +24,8 @@ func main() {
 	cfg.User = config.Conf.Mysql.UserName
 	cfg.Password = config.Conf.Mysql.Password // 如果有密码，设置密码
 	cfg.Dump.TableDB = config.Conf.Mysql.DriverName
-	cfg.Dump.Tables = []string{""} // 监听的表
-	cfg.Dump.ExecutionPath = ""    //设置为空
+	cfg.Dump.Tables = []string{config.Conf.Mysql.TargetTable} // 监听的表
+	cfg.Dump.ExecutionPath = ""                               //设置为空
 
 	// 创建 Canal 实例
 	c, err := canal.NewCanal(cfg)
@@ -44,7 +44,7 @@ func main() {
 	}
 	fmt.Println("机器人已经启动")
 
-	targetTable := ""                                                               // 注册自定义事件处理器，并设置目标表
+	targetTable := config.Conf.Mysql.TargetTable                                    // 注册自定义事件处理器，并设置目标表
 	c.SetEventHandler(&service.OrDerEventHandler{TargetTable: targetTable, Bot: b}) //监听函数(自定义操作)
 
 	fmt.Println("Canal is running...")

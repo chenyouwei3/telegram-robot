@@ -30,10 +30,11 @@ type Config struct {
 }
 
 type MySQL struct {
-	DriverName string `yaml:"driverName"`
-	Host       string `yaml:"host"`
-	Port       string `yaml:"port"`
-	Database   string `yaml:"database"`
-	UserName   string `yaml:"username"`
-	Password   string `yaml:"password"`
+	DriverName  string `yaml:"driverName"`
+	Host        string `yaml:"host"`
+	Port        string `yaml:"port"`
+	Database    string `yaml:"database"`
+	UserName    string `yaml:"username"`
+	Password    string `yaml:"password"`
+	TargetTable string `yaml:"targetTable"`
 }
