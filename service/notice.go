@@ -6,7 +6,6 @@ import (
 	"github.com/go-mysql-org/go-mysql/canal"
 	"github.com/go-telegram/bot"
 	"github.com/siddontang/go-log/log"
-	"telegram-robot/initialize/config"
 	"telegram-robot/model"
 )
 
@@ -19,15 +18,18 @@ type OrDerEventHandler struct {
 
 // OnRow 方法处理行事件，根据不同的操作类型进行处理
 func (o *OrDerEventHandler) OnRow(e *canal.RowsEvent) error {
-	// 获取发生变更的表名
-	if e.Table.Schema+"."+e.Table.Name != config.Conf.Mysql.Database+"."+o.TargetTable { // 只处理目标表的事件
+	// 获取发生变更的表名\
+	fmt.Println(e.Table.Name, o.TargetTable)
+	if e.Table.Name != o.TargetTable { // 只处理目标表的事件
 		return nil
 	}
 	// 根据不同的操作类型进行响应处理
 	switch e.Action {
 	case canal.InsertAction:
+		fmt.Println("ssss")
 		o.handleInsert(e)
 	case canal.UpdateAction:
+		fmt.Println("xxx")
 		o.handleUpdate(e)
 	default:
 		log.Warn("Unknown action detected")

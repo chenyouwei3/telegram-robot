@@ -12,7 +12,7 @@ func NotifyDataUpdate(ctx context.Context, b *bot.Bot, message model.TgOrder) {
 	// 假设管理员的 ChatID 是 12345678
 	//
 	// 构造推送的消息内容
-	sliceTemp := []int64{}
+	sliceTemp := []int64{123456}
 	message1 := fmt.Sprintf(`🐟状态更新：
 管理员：
 订单编号：%d     
