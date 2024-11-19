@@ -13,11 +13,9 @@
 ## 安装
 
 注意将bot包当中的源码启动函数更改,将请求转发到运行程序的sock5端口
-> http.Transport
+
 > proxyURL, _ := url.Parse("http://your-http-proxy.com:8080")
-> transport := &http.Transport{
-> Proxy: http.ProxyURL(proxyURL),
-> }
+> transport := &http.Transport{ Proxy: http.ProxyURL(proxyURL),}
 
 
 - 需要更改推送的用户,在notify.go当中的切片填入需要的uuid和chatid
